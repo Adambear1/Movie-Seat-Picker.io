@@ -16,7 +16,7 @@ body {
     margin: 0;
 }
 
-.container{
+.main-div{
     perspective: 800px;
     margin-bottom: 30px;
 }
@@ -114,3 +114,111 @@ p.text span {
     color: #6feaf6;
 }
 
+.hide {
+    display: none;
+}
+
+/*  */
+
+.flip-card {
+    background-color: transparent;
+    width: 300px;
+    height: 300px;
+    perspective: 1000px;
+  }
+  
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+  
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  .flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  .flip-card-front {
+    background-color: #bbb;
+    color: black;
+  }
+  
+  .flip-card-back {
+    background-color: #2980b9;
+    color: white;
+    transform: rotateY(180deg);
+  }
+
+  /* */
+
+  .dropbtn {
+    background-color: #3498DB;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 15px;
+  }
+  
+  .dropbtn:hover, .dropbtn:focus {
+    background-color: #2980B9;
+    border-radius: 15px;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    border-radius: 15px;
+  }
+
+  .dropdown:hover {
+    position: relative;
+    display: inline-block;
+    border-radius: 15px;
+    display: inline-block
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    
+  }
+  
+  .dropdown-content li {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown li:hover {
+      background-color: #ddd;
+}
+  
+  .show {
+      display: block;
+      border-radius: 15px;
+}
+
+    ul {
+    padding: 0px;
+    margin: 0px;
+
+}

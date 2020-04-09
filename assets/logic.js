@@ -1,4 +1,4 @@
-const container = document.querySelector('.container');
+const container = document.querySelector('.main-div');
 const seats = document.querySelectorAll('.row .seat:not(.occupied)');
 const count = document.getElementById('count');
 const total = document.getElementById('total');
@@ -68,3 +68,85 @@ container.addEventListener('click', e => {
 
 // Initial count and total set
 updateSelectedCount();
+
+
+
+
+
+
+
+// $('#movie li:last').keypress(function (e) {
+//   var key = e.which;
+//   if(key == 13)  // the enter key code
+//    {
+//     //  $('input[name = butAssignProd]').click();
+//      console.log('hi')
+//      return false;  
+//    }
+//  });   
+
+
+
+
+
+
+
+$('li:not(:last-child)').click(function(e) {
+  e.preventDefault();
+  var $target = $(e.target)
+  var movie = $target.attr("id");
+  var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
+  
+    // Creating an AJAX call for the specific movie button being clicked
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+      var frontDiv = $('<div class="flip-card-front">');
+      var backDiv = $('<div class="flip-card-back">');
+      var rating = response.Rated;
+      var pOne = $("<p>").text("Rating: " + rating);
+      backDiv.append(pOne);
+      var released = response.Released;
+      var pTwo = $("<p>").text("Released: " + released);
+      backDiv.append(pTwo);
+      var plot = response.Plot;
+      var pThree = $("<p>").text("Plot: " + plot);
+      backDiv.append(pThree);
+      var imgURL = response.Poster;
+      var image = $('<img>').attr("src", imgURL);
+      frontDiv.html(image);
+      // Putting the entire movie above the previous movies
+      $('.flip-card').removeClass('hide');
+      $('.flip-card-inner').append(frontDiv);
+      $(frontDiv).append(backDiv);
+    });
+  
+
+});
+
+
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
+
+
+
+
