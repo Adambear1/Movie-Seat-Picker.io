@@ -90,7 +90,7 @@ $('li:not(:last-child)').hover(function(e) {
       var imgURL = response.Poster;
 
 
-      $('.flip-card').removeClass('hide')
+      $('.flip-card').removeClass('invisible')
       var image = $('<img>').attr("src", imgURL)
       image.addClass('close-front')
       $('.flip-card-front').html(image);
@@ -114,20 +114,20 @@ $('li:not(:last-child)').hover(function(e) {
 })
 
 function hide(){
-  $('.flip-card').addClass('hide')
-  $('.flip-card').addClass('hide')
+  $('.flip-card').addClass('invisible')
+  // $('.flip-card').addClass('hide')
 }
 
 
 
 $('.dropbtn').on('click', function(){
   console.log('true')
-  $('#movie').removeClass('hide')
+  $('#myDropdown').removeClass('invisible')
 })
 
 $('li:not(:last-child)').on('click', function(){
   console.log('true')
-  $('#movie').addClass('hide')
+  $('#myDropdown').addClass('invisible')
 })
 
 

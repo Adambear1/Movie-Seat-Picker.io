@@ -14,11 +14,16 @@ body {
     height: 100vh;
     font-family: 'Lato', sans-serif;
     margin: 0;
+    position: relative;
+    bottom: 100px;
 }
 
 .main-div{
     perspective: 800px;
     margin-bottom: 30px;
+    position: relative;
+    right: 100px;
+    bottom: 250px;
 }
 
 .movie-contianer{
@@ -79,6 +84,9 @@ body {
     list-style-type: none; 
     display: flex;
     justify-content: space-between;
+    position: relative;
+    right: 100px;
+    bottom: 250px;
 
 }
 
@@ -108,6 +116,9 @@ body {
 
 p.text{
     margin: 5px 0;
+    position: relative;
+    right: 100px;
+    bottom: 250px;
 }
 
 p.text span {
@@ -118,9 +129,16 @@ p.text span {
     display: none;
 }
 
+.invisible {
+  visibility: hidden;
+}
+
 /*  */
 
 .flip-card {
+  position: relative;
+  left: 200px;
+  top: 275px;
   background-color: transparent;
   height: 275px;
   width: 175px;
@@ -212,6 +230,9 @@ img {
     margin-bottom: 25px;
     opacity: 80%;
     width: auto;
+    position: relative;
+    left: 245px;
+    top: 300px;
 }
   
   .dropbtn:hover, .dropbtn:focus {
@@ -233,7 +254,7 @@ img {
   }
   
   .dropdown-content {
-    display: none;
+    visibility: hidden;
     position: absolute;
     background-color: #f1f1f1;
     min-width: 160px;
@@ -255,9 +276,11 @@ img {
 }
   
   .show {
-      display: block;
+      visibility: visible;
       border-radius: 15px;
 }
+
+
 
     ul {
     padding: 0px;
@@ -267,6 +290,9 @@ img {
 
 #myDropdown {
   opacity: 97%;
+  position: relative;
+  left: 215px;
+  top: 300px;
 }
 
 body {
