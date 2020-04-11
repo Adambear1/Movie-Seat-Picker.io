@@ -73,28 +73,13 @@ updateSelectedCount();
 
 
 
-
-
-// $('#movie li:last').keypress(function (e) {
-//   var key = e.which;
-//   if(key == 13)  // the enter key code
-//    {
-//     //  $('input[name = butAssignProd]').click();
-//      console.log('hi')
-//      return false;  
-//    }
-//  });   
-
-
-
-
-
-
-
-$('li:not(:last-child)').click(function(e) {
+$('li:not(:last-child)').hover(function(e) {
   e.preventDefault();
-  var $target = $(e.target)
+  var $target = $(e.target);
   var movie = $target.attr("id");
+  console.log(movie)
+  console.log(movie === undefined)
+
   var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
   
     // Creating an AJAX call for the specific movie button being clicked
@@ -102,51 +87,103 @@ $('li:not(:last-child)').click(function(e) {
       url: queryURL,
       method: "GET"
     }).then(function(response) {
-      var frontDiv = $('<div class="flip-card-front">');
-      var backDiv = $('<div class="flip-card-back">');
+      var imgURL = response.Poster;
+
+
+      $('.flip-card').removeClass('hide')
+      var image = $('<img>').attr("src", imgURL)
+      image.addClass('close-front')
+      $('.flip-card-front').html(image);
+      var exit = $('<button onclick="hide()">').text('x');
+      exit.addClass('close');
       var rating = response.Rated;
+      $('.flip-card-back').empty()
       var pOne = $("<p>").text("Rating: " + rating);
-      backDiv.append(pOne);
+      $('.flip-card-back').append(pOne);
       var released = response.Released;
       var pTwo = $("<p>").text("Released: " + released);
-      backDiv.append(pTwo);
+      $('.flip-card-back').append(pTwo);
       var plot = response.Plot;
       var pThree = $("<p>").text("Plot: " + plot);
-      backDiv.append(pThree);
-      var imgURL = response.Poster;
-      var image = $('<img>').attr("src", imgURL);
-      frontDiv.html(image);
-      // Putting the entire movie above the previous movies
-      $('.flip-card').removeClass('hide');
-      $('.flip-card-inner').append(frontDiv);
-      $(frontDiv).append(backDiv);
-    });
-  
+      $('.flip-card-back').append(pThree);
+      $('.flip-card-back').prepend(exit)
+
+
 
 });
+})
 
-
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
+function hide(){
+  $('.flip-card').addClass('hide')
+  $('.flip-card').addClass('hide')
 }
 
 
 
-// Close the dropdown if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
-    }
+$('.dropbtn').on('click', function(){
+  console.log('true')
+  $('#movie').removeClass('hide')
+})
+
+$('li').on('click', function(){
+  console.log('true')
+  $('#movie').addClass('hide')
+})
+
+
+// $('document:not(.dropdown, .flip-card)').hover(function(){
+
+//   $('.flip-card').addClass('hide')
+
+// }
+// )
+
+
+$(document).on('keypress',function(e) {
+  if(e.which == 13) {
+    var movieVal = $('.search-bar').val()
+    console.log(movieVal);
+    $('.search-bar').val(" ")
+    var queryURL = "https://www.omdbapi.com/?t=" + movieVal + "&apikey=trilogy";
+  
+    // Creating an AJAX call for the specific movie button being clicked
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+      var newLi = $('<li>')
+      newLi.addClass('default')
+      newLi.text(movieVal)
+      $(newLi).insertBefore('.search-bar')
+      var imgURL = response.Poster;
+      var image = $('<img>').attr("src", imgURL);
+      $('.flip-card-front').html(image)
+      var rating = response.Rated;
+      $('.flip-card-back').empty()
+      var pOne = $("<p>").text("Rating: " + rating);
+      $('.flip-card-back').append(pOne);
+      var released = response.Released;
+      var pTwo = $("<p>").text("Released: " + released);
+      $('.flip-card-back').append(pTwo);
+      var plot = response.Plot;
+      var pThree = $("<p>").text("Plot: " + plot);
+      $('.flip-card-back').append(pThree);
+})
+}});
+
+
+
+const $menu = $('#myDropdown')
+
+$(document).click(e => {
+  console.log(e.target)
+  if (!$('.dropbtn').is(e.target) && $menu.has(e.target).length === 0 ) {
+    $menu.removeClass('show');
+    // $('.flip-card').addClass('hide')}
   }
-}
-
-
-
-
+  $('.dropbtn').on('click', () => {
+    $menu.addClass('show')
+    // $('.flip-card').removeClass('hide')
+  })
+})
 
