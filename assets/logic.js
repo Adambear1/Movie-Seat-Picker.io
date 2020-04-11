@@ -125,7 +125,7 @@ $('.dropbtn').on('click', function(){
   $('#movie').removeClass('hide')
 })
 
-$('li').on('click', function(){
+$('li:not(:last-child)').on('click', function(){
   console.log('true')
   $('#movie').addClass('hide')
 })
