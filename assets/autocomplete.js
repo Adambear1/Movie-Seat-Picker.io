@@ -90,8 +90,10 @@ function autocomplete(inp, arr) {
       }
     }
     /*execute a function when someone clicks in the document:*/
-    document.addEventListener("click", function (e) {
+    document.addEventListener("keypress", function (e) {
+      if(e.which == 13) {
         closeAllLists(e.target);
+      }      
     });
   }
   

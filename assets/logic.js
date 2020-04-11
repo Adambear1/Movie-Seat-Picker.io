@@ -73,7 +73,7 @@ updateSelectedCount();
 
 
 
-$('li:not(:last-child)').hover(function(e) {
+$('li:not(:last-child)').bind('click mouseover', (function(e) {
   e.preventDefault();
   var $target = $(e.target);
   var movie = $target.attr("id");
@@ -112,6 +112,7 @@ $('li:not(:last-child)').hover(function(e) {
 
 });
 })
+)
 
 function hide(){
   $('.flip-card').addClass('hide')
@@ -138,8 +139,13 @@ $('li:not(:last-child)').on('click', function(){
 // }
 // )
 
+console.log($('.search-bar'))
+console.log($('#myInput'))
+console.log
 
-$(document).on('keypress',function(e) {
+
+$(document).on('click keypress',function(e) {
+  var movieVal = $('.search-bar').val()
   if(e.which == 13) {
     var movieVal = $('.search-bar').val()
     console.log(movieVal);
