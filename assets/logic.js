@@ -3,35 +3,25 @@ const seats = document.querySelectorAll('.row .seat:not(.occupied)');
 const count = document.getElementById('count');
 const total = document.getElementById('total');
 const movieSelect = document.getElementById('movie');
-
 populateUI();
-
 let ticketPrice = +movieSelect.value;
-
 // Save selected movie index and price
 function setMovieData(movieIndex, moviePrice) {
   localStorage.setItem('selectedMovieIndex', movieIndex);
   localStorage.setItem('selectedMoviePrice', moviePrice);
 }
-
 // Update total and count
 function updateSelectedCount() {
   const selectedSeats = document.querySelectorAll('.row .seat.selected');
-
   const seatsIndex = [...selectedSeats].map(seat => [...seats].indexOf(seat));
-
   localStorage.setItem('selectedSeats', JSON.stringify(seatsIndex));
-
   const selectedSeatsCount = selectedSeats.length;
-
   count.innerText = selectedSeatsCount;
   total.innerText = selectedSeatsCount * ticketPrice;
 }
-
 // Get data from localstorage and populate UI
 function populateUI() {
   const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats'));
-
   if (selectedSeats !== null && selectedSeats.length > 0) {
     seats.forEach((seat, index) => {
       if (selectedSeats.indexOf(index) > -1) {
@@ -39,21 +29,17 @@ function populateUI() {
       }
     });
   }
-
   const selectedMovieIndex = localStorage.getItem('selectedMovieIndex');
-
   if (selectedMovieIndex !== null) {
     movieSelect.selectedIndex = selectedMovieIndex;
   }
 }
-
 // Movie select event
 movieSelect.addEventListener('change', e => {
   ticketPrice = +e.target.value;
   setMovieData(e.target.selectedIndex, e.target.value);
   updateSelectedCount();
 });
-
 // Seat click event
 container.addEventListener('click', e => {
   if (
@@ -61,37 +47,61 @@ container.addEventListener('click', e => {
     !e.target.classList.contains('occupied')
   ) {
     e.target.classList.toggle('selected');
-
     updateSelectedCount();
   }
 });
 
+/////////////////////////
+
+
+// function movieProperty(){
+
+
+//   fetch('https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup?term=lion-king'), {
+// 	"method": "GET",
+// 	"headers": {
+// 		"x-rapidapi-host": "utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com",
+// 		"x-rapidapi-key": "9d23a098c0mshffb86547dfcfa5ap17bf84jsn411163bf9f70"
+// 	}
+// }
+// .then(response => {
+// 	console.log(response);
+// })
+// .catch(err => {
+// 	console.log(err);
+// });
+// }
+
+// movieProperty()
+// console.log(movieProperty)
+
+/////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
 // Initial count and total set
 updateSelectedCount();
-
-
-
-
-
 $('li:not(:last-child)').bind('click mouseover', (function(e) {
   e.preventDefault();
   var $target = $(e.target);
-  var movie = $target.attr("id");
-  console.log(movie)
-  console.log(movie === undefined)
-
-  var queryURL = "https://www.omdbapi.com/?t=" + movie + "&apikey=trilogy";
-  
+  var movieVal = $target.attr("id");
+  var queryURL = "https://www.omdbapi.com/?t=" + movieVal + "&apikey=trilogy";
     // Creating an AJAX call for the specific movie button being clicked
     $.ajax({
       url: queryURL,
       method: "GET"
     }).then(function(response) {
       var imgURL = response.Poster;
-
-
-      $('.flip-card').removeClass('hide')
       var image = $('<img>').attr("src", imgURL)
+      $('.flip-card').removeClass('invisible')
       image.addClass('close-front')
       $('.flip-card-front').html(image);
       var exit = $('<button onclick="hide()">').text('x');
@@ -107,60 +117,47 @@ $('li:not(:last-child)').bind('click mouseover', (function(e) {
       var pThree = $("<p>").text("Plot: " + plot);
       $('.flip-card-back').append(pThree);
       $('.flip-card-back').prepend(exit)
-
-
-
 });
+
+
+
+
+fetch("http://api.giphy.com/v1/gifs/search?q=" + movieVal + "&api_key=YiN6asmZ6YehXrIQtf7V4O189pKuZZMT&limit=10")
+  .then(res => res.json())
+  .then(data => {
+    const results = data;
+    document.querySelector('.screen').style.backgroundColor = 'transparent'
+      var i = 0;
+      while (i <= 10){
+        setInterval(function(){
+        document.querySelector('.screen').setAttribute('src', results.data[i].images.fixed_width_small.url)
+        i++}, 
+        1500)
+      }     
+
+      
 })
-)
-
-function hide(){
-  $('.flip-card').addClass('hide')
-  $('.flip-card').addClass('hide')
-}
-
-
-
-$('.dropbtn').on('click', function(){
-  console.log('true')
-  $('#movie').removeClass('hide')
-})
-
-$('li:not(:last-child)').on('click', function(){
-  console.log('true')
-  $('#movie').addClass('hide')
-})
-
-
-// $('document:not(.dropdown, .flip-card)').hover(function(){
-
-//   $('.flip-card').addClass('hide')
-
-// }
-// )
-
-console.log($('.search-bar'))
-console.log($('#myInput'))
-console.log
+}))
 
 
 $(document).on('click keypress',function(e) {
-  var movieVal = $('.search-bar').val()
   if(e.which == 13) {
-    var movieVal = $('.search-bar').val()
+    var input = $('.search-bar').val()
+    var movieVal = input.replace(/\s+/g, '-')
+    var random = Math.floor(Math.random() * 7) + 8
     console.log(movieVal);
     $('.search-bar').val(" ")
     var queryURL = "https://www.omdbapi.com/?t=" + movieVal + "&apikey=trilogy";
-  
     // Creating an AJAX call for the specific movie button being clicked
     $.ajax({
       url: queryURL,
       method: "GET"
     }).then(function(response) {
-      var newLi = $('<li>')
+      var newLi = $('<li id=' + movieVal + '  value=' + random + '></li>')
+      newLi.attr('id', movieVal)
       newLi.addClass('default')
-      newLi.text(movieVal)
-      $(newLi).insertBefore('.search-bar')
+      newLi.text(input + "  ($" + random + ")")
+      $(newLi).insertAfter('#The-Lion-King')
       var imgURL = response.Poster;
       var image = $('<img>').attr("src", imgURL);
       $('.flip-card-front').html(image)
@@ -175,8 +172,20 @@ $(document).on('click keypress',function(e) {
       var pThree = $("<p>").text("Plot: " + plot);
       $('.flip-card-back').append(pThree);
 })
-}});
 
+    fetch("http://api.giphy.com/v1/gifs/search?q=" + movieVal + "&api_key=YiN6asmZ6YehXrIQtf7V4O189pKuZZMT&limit=5")
+      .then(res => res.json())
+      .then(data => {
+      const results = data
+        console.log(results)
+        console.log(results.data[0].images.fixed_width_small)
+
+        document.querySelector('.screen').style.backgroundColor = 'transparent'
+        // $('.screen').attr('background-color','transaparent !important;')
+        // $('.screen').attr('z-index', '10')
+        document.querySelector('.screen').setAttribute('src', results.data[0].images.fixed_width_small.url)
+})
+  }});
 
 
 const $menu = $('#myDropdown')
@@ -185,11 +194,49 @@ $(document).click(e => {
   console.log(e.target)
   if (!$('.dropbtn').is(e.target) && $menu.has(e.target).length === 0 ) {
     $menu.removeClass('show');
-    // $('.flip-card').addClass('hide')}
   }
   $('.dropbtn').on('click', () => {
     $menu.addClass('show')
-    // $('.flip-card').removeClass('hide')
   })
 })
 
+$('.dropbtn').on('click', function(){
+  console.log('true')
+  $('#myDropdown').removeClass('invisible')
+})
+
+$('li:not(:last-child)').on('click', function(){
+  console.log('true')
+  $('#myDropdown').addClass('invisible')
+})
+
+function hide(){
+  $('.flip-card').addClass('invisible')
+}
+
+
+// var settings = {
+// 	"async": true,
+// 	"crossDomain": true,
+// 	"url": "https://devru-bigflix-movies-download-v1.p.rapidapi.com/movieList.php?pageIndex=1&resultsperpage=10",
+// 	"method": "GET",
+// 	"headers": {
+// 		"x-rapidapi-host": "devru-bigflix-movies-download-v1.p.rapidapi.com",
+// 		"x-rapidapi-key": "9d23a098c0mshffb86547dfcfa5ap17bf84jsn411163bf9f70"
+// 	}
+// }
+
+// $.ajax(settings).done(function (response) {
+// 	console.log(response);
+// });
+  
+
+// fetch("http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=YOUR_API_KEY&limit=5"), {
+// 	"method": "GET",
+// 	}
+// .then(response => {
+// 	console.log(response);
+// })
+// .catch(err => {
+// 	console.log(err);
+// });
