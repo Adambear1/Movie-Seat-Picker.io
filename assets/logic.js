@@ -2,7 +2,7 @@ const container = document.querySelector('.main-div');
 const seats = document.querySelectorAll('.row .seat:not(.occupied)');
 const count = document.getElementById('count');
 const total = document.getElementById('total');
-const movieSelect = document.getElementById('movie');
+const movieSelect = document.querySelector('#movie');
 populateUI();
 let ticketPrice = +movieSelect.value;
 // Save selected movie index and price
@@ -51,45 +51,11 @@ container.addEventListener('click', e => {
   }
 });
 
-/////////////////////////
-
-
-// function movieProperty(){
-
-
-//   fetch('https://utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com/lookup?term=lion-king'), {
-// 	"method": "GET",
-// 	"headers": {
-// 		"x-rapidapi-host": "utelly-tv-shows-and-movies-availability-v1.p.rapidapi.com",
-// 		"x-rapidapi-key": "9d23a098c0mshffb86547dfcfa5ap17bf84jsn411163bf9f70"
-// 	}
-// }
-// .then(response => {
-// 	console.log(response);
-// })
-// .catch(err => {
-// 	console.log(err);
-// });
-// }
-
-// movieProperty()
-// console.log(movieProperty)
-
-/////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
 // Initial count and total set
 updateSelectedCount();
-$('li:not(:last-child)').bind('click mouseover', (function(e) {
+
+
+$('li:not(:last-child)').on('click', (function(e) {
   e.preventDefault();
   var $target = $(e.target);
   var movieVal = $target.attr("id");
@@ -118,26 +84,28 @@ $('li:not(:last-child)').bind('click mouseover', (function(e) {
       $('.flip-card-back').append(pThree);
       $('.flip-card-back').prepend(exit)
 });
+      fetch("http://api.giphy.com/v1/gifs/search?q=" + movieVal + "&api_key=dc6zaTOxFJmzC&limit=10")
+        .then(res => res.json())
+        .then(data => {
+          let results = data;
+          console.log(results)
+          document.querySelector('.screen').style.backgroundColor = 'transparent'
+              
+          var i = 0;
+          if (i < results.data.length){
+            setInterval(function(){
+              document.querySelector('.screen').setAttribute('src', results.data[i].images.fixed_width_small.url)
+              i++
+            }, 
+              1500)
+          } else {
+            i = 0 
+          }
 
 
-
-
-fetch("http://api.giphy.com/v1/gifs/search?q=" + movieVal + "&api_key=YiN6asmZ6YehXrIQtf7V4O189pKuZZMT&limit=10")
-  .then(res => res.json())
-  .then(data => {
-    const results = data;
-    document.querySelector('.screen').style.backgroundColor = 'transparent'
-      var i = 0;
-      while (i <= 10){
-        setInterval(function(){
-        document.querySelector('.screen').setAttribute('src', results.data[i].images.fixed_width_small.url)
-        i++}, 
-        1500)
-      }     
-
-      
-})
-}))
+         
+          })
+        }))
 
 
 $(document).on('click keypress',function(e) {
@@ -173,7 +141,7 @@ $(document).on('click keypress',function(e) {
       $('.flip-card-back').append(pThree);
 })
 
-    fetch("http://api.giphy.com/v1/gifs/search?q=" + movieVal + "&api_key=YiN6asmZ6YehXrIQtf7V4O189pKuZZMT&limit=5")
+    fetch("http://api.giphy.com/v1/gifs/search?q=" + movieVal + "&api_key=dc6zaTOxFJmzC&limit=10")
       .then(res => res.json())
       .then(data => {
       const results = data
@@ -181,11 +149,15 @@ $(document).on('click keypress',function(e) {
         console.log(results.data[0].images.fixed_width_small)
 
         document.querySelector('.screen').style.backgroundColor = 'transparent'
-        // $('.screen').attr('background-color','transaparent !important;')
-        // $('.screen').attr('z-index', '10')
         document.querySelector('.screen').setAttribute('src', results.data[0].images.fixed_width_small.url)
 })
   }});
+
+
+
+
+
+
 
 
 const $menu = $('#myDropdown')
@@ -215,28 +187,7 @@ function hide(){
 }
 
 
-// var settings = {
-// 	"async": true,
-// 	"crossDomain": true,
-// 	"url": "https://devru-bigflix-movies-download-v1.p.rapidapi.com/movieList.php?pageIndex=1&resultsperpage=10",
-// 	"method": "GET",
-// 	"headers": {
-// 		"x-rapidapi-host": "devru-bigflix-movies-download-v1.p.rapidapi.com",
-// 		"x-rapidapi-key": "9d23a098c0mshffb86547dfcfa5ap17bf84jsn411163bf9f70"
-// 	}
-// }
 
-// $.ajax(settings).done(function (response) {
-// 	console.log(response);
-// });
-  
 
-// fetch("http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=YOUR_API_KEY&limit=5"), {
-// 	"method": "GET",
-// 	}
-// .then(response => {
-// 	console.log(response);
-// })
-// .catch(err => {
-// 	console.log(err);
-// });
+
+
