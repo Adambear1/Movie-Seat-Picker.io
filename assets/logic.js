@@ -159,7 +159,7 @@ $(document).on('click keypress',function(e) {
         document.querySelector('.screen').setAttribute('src', results.data[0].images.fixed_width_small.url)
 })
 
-    $('#movie-name').text("Movie selected:  " + input)
+    $('#movie-name').html("Movie selected:  " + '<p>' + input + '</p>')
   }});
 
 

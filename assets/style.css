@@ -29,26 +29,6 @@ body {
   margin-top: 50px;
 }
 
-.card{
-  background-color: rgba(0,0,0,.1) !important;
-  border-radius: 14px;
-}
-
-.card:hover{
-  background-color: rgba(0,0,0,.2) !important;
-  border-radius: 14px;
-}
-
-#tickets:hover, #popcorn:hover, #soda:hover{
-  font-size: x-large;
-}
-
-.card-action a{
-  color: #6FEAF6 !important;
-}
-
-
-
 .movie-contianer{
   margin: 20px 0;
 
@@ -328,4 +308,24 @@ color: #FFFFFF;
   bottom: 500px;
   right: 600px;
   width: 45%;
+}
+
+.card{
+  background-color: rgba(0,0,0,.1) !important;
+  border-radius: 14px;
+  position: absolute;
+}
+
+.card:hover{
+  background-color: rgba(0,0,0,.2) !important;
+  border-radius: 14px;
+  position: absolute;
+}
+
+#tickets:hover, #popcorn:hover, #soda:hover{
+  font-size: x-large;
+}
+
+.card-action a{
+  color: #6FEAF6 !important;
 }
