@@ -1,23 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,300&display=swap');
-
 * {
     box-sizing: border-box;
 }
-
 body {
     background-color: #242333;
     color: white;
-    display: flex;   
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
-    font-family: 'Lato', sans-serif;
+    font-family: ‘Lato’, sans-serif;
     margin: 0;
     position: relative;
     bottom: 100px;
 }
-
 .main-div{
     perspective: 800px;
     margin-bottom: 30px;
@@ -25,11 +21,9 @@ body {
     right: 100px;
     bottom: 250px;
 }
-
 .movie-contianer{
     margin: 20px 0;
 }
-
 .movie-container select{
     background-color: white;
     border: 0;
@@ -41,7 +35,6 @@ body {
     -webkit-appearance: none;
     appearance: none;
 }
-
 .seat{
     background-color: #444451;
     height: 12px;
@@ -50,23 +43,18 @@ body {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
-
 .seat.selected{
-    background-color: #6feaf6;
+    background-color: #6FEAF6;
 }
-
 .seat.occupied{
     background-color: white;
 }
-
 .seat:nth-of-type(2) {
     margin-right: 18px;
 }
-
 .seat:nth-last-of-type(2) {
     margin-left: 18px;
 }
-
 .seat:not(.occupied):hover {
     cursor: pointer;
     transform: scale(1.2)
@@ -75,36 +63,34 @@ body {
     cursor: default;
     transform: scale(1)
 }
-
 .showcase {
     background-color: rgba(0,0,0,0.1);
     padding: 5px 10px;
     border-radius: 5px;
     color: #777;
-    list-style-type: none; 
+    list-style-type: none;
     display: flex;
     justify-content: space-between;
     position: relative;
     right: 100px;
     bottom: 250px;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 396a4f125b7143999af2c5566178efc906903fbe
 }
-
 .showcase li {
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 0 10px;
 }
-
 .showcase li small {
     margin-left: 2px;
 }
-
 .row {
     display: flex;
 }
-
 .screen{
     background-color: white;
     height: 70px;
@@ -113,28 +99,30 @@ body {
     transform: rotateX(-45deg);
     box-shadow: 0 3px 10px rgba(255,255,255,0.7);
 }
-
 p.text{
     margin: 5px 0;
     position: relative;
     right: 100px;
     bottom: 250px;
 }
-
 p.text span {
-    color: #6feaf6;
+    color: #6FEAF6;
 }
-
 .hide {
     display: none;
 }
+<<<<<<< HEAD
 
 .invisible {
   visibility: hidden;
 }
 
+=======
+.invisible {
+  visibility: hidden;
+}
+>>>>>>> 396a4f125b7143999af2c5566178efc906903fbe
 /*  */
-
 .flip-card {
   position: relative;
   left: 200px;
@@ -145,7 +133,6 @@ p.text span {
   font-size: 14px;
   perspective: 1000px;
 }
-
 .flip-card-inner {
   position: relative;
   width: 100%;
@@ -155,11 +142,9 @@ p.text span {
   transform-style: preserve-3d;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
-
 .flip-card:hover .flip-card-inner {
   transform: rotateY(180deg);
 }
-
 .flip-card-front, .flip-card-back {
   position: absolute;
   width: 100%;
@@ -167,21 +152,17 @@ p.text span {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   border-radius: 10px;
-  /* font-family: 'FontAwesome';content: '\f00d'; */
+  /* font-family: ‘FontAwesome’;content: ‘\f00d’; */
 }
-
-
 .flip-card-front {
   background-color: #bbb;
   color: black;
 }
-
 .flip-card-back {
-  background-color: #2980b9;
+  background-color: #2980B9;
   color: white;
   transform: rotateY(180deg);
 }
-
 .flip-card-back p {
   font-size: 14px;
   text-align: center;
@@ -190,13 +171,11 @@ p.text span {
   padding-left: 2px;
   padding-right: 2px;
 }
-
 img {
   height: 275px;
   width: 175px;
   border-radius: 10px;
 }
-
 .close {
   font-weight: bold;
   opacity: 100%;
@@ -205,22 +184,18 @@ img {
   margin-top: 2%;
   color:white;
 }
-
 .close-front {
   font-weight: bold;
   opacity: 100%;
   float: right;
   color:white;
 }
-
 .close:hover {
   opacity: 90%;
 }
-
   /* */
-
   .dropbtn {
-    background-color: #6feaf6;
+    background-color: #6FEAF6;
     color: white;
     padding: 16px;
     font-size: 16px;
@@ -234,67 +209,59 @@ img {
     left: 245px;
     top: 300px;
 }
-  
   .dropbtn:hover, .dropbtn:focus {
-    background-color: #1cecff;
+    background-color: #1CECFF;
     border-radius: 15px;
   }
-  
   .dropdown {
     position: relative;
     display: inline-block;
     border-radius: 15px;
   }
-
   .dropdown:hover {
     position: relative;
     display: inline-block;
     border-radius: 15px;
     display: inline-block
   }
-  
   .dropdown-content {
     visibility: hidden;
     position: absolute;
-    background-color: #f1f1f1;
+    background-color: #F1F1F1;
     min-width: 160px;
     overflow: auto;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-    
   }
-  
   .dropdown-content li {
     color: black;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
   }
-  
   .dropdown li:hover {
       background-color: #ddd;
 }
-  
   .show {
       visibility: visible;
       border-radius: 15px;
 }
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 396a4f125b7143999af2c5566178efc906903fbe
     ul {
     padding: 0px;
     margin: 0px;
-
 }
-
 #myDropdown {
   opacity: 97%;
   position: relative;
   left: 215px;
   top: 300px;
 }
-
 body {
   font: 16px Arial;
 }
@@ -305,12 +272,12 @@ body {
 }
 input {
   border: 1px solid transparent;
-  background-color: #f1f1f1;
+  background-color: #F1F1F1;
   padding: 10px;
   font-size: 16px;
 }
 input[type=text] {
-  background-color: #f1f1f1;
+  background-color: #F1F1F1;
   width: 100%;
 }
 input[type=submit] {
@@ -319,7 +286,7 @@ input[type=submit] {
 }
 .autocomplete-items {
   position: absolute;
-  border: 1px solid #d4d4d4;
+  border: 1px solid #D4D4D4;
   border-bottom: none;
   border-top: none;
   z-index: 99;
@@ -332,15 +299,14 @@ input[type=submit] {
   padding: 10px;
   cursor: pointer;
   background-color: #fff;
-  border-bottom: 1px solid #d4d4d4;
+  border-bottom: 1px solid #D4D4D4;
 }
 .autocomplete-items div:hover {
   /*when hovering an item:*/
-  background-color: #e9e9e9;
+  background-color: #E9E9E9;
 }
 .autocomplete-active {
   /*when navigating through the items using the arrow keys:*/
   background-color: DodgerBlue !important;
-  color: #ffffff;
+  color: #FFFFFF;
 }
-
