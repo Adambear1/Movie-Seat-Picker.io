@@ -5,6 +5,8 @@ const total = document.getElementById('total');
 const movieSelect = document.querySelector('#movie');
 populateUI();
 let ticketPrice = +movieSelect.value;
+
+
 // Save selected movie index and price
 function setMovieData(movieIndex, moviePrice) {
   localStorage.setItem('selectedMovieIndex', movieIndex);
@@ -18,6 +20,9 @@ function updateSelectedCount() {
   const selectedSeatsCount = selectedSeats.length;
   count.innerText = selectedSeatsCount;
   total.innerText = selectedSeatsCount * ticketPrice;
+  if (isNaN(ticketPrice)){
+    total.innerText = 0
+  }
 }
 // Get data from localstorage and populate UI
 function populateUI() {
@@ -35,8 +40,9 @@ function populateUI() {
   }
 }
 // Movie select event
-movieSelect.addEventListener('change', e => {
-  ticketPrice = +e.target.value;
+movieSelect.addEventListener('mouseover', function(e){
+  ticketPrice = e.target.value;
+  console.log(e.target.value)
   setMovieData(e.target.selectedIndex, e.target.value);
   updateSelectedCount();
 });
@@ -55,7 +61,7 @@ container.addEventListener('click', e => {
 updateSelectedCount();
 
 
-$('li:not(:last-child)').on('click', (function(e) {
+$('li:not(:last-child)').on('click mouseover', (function(e) {
   e.preventDefault();
   var $target = $(e.target);
   var movieVal = $target.attr("id");
@@ -100,14 +106,15 @@ $('li:not(:last-child)').on('click', (function(e) {
               1500)
           } else {
             i = 0 
-          }
-
-
-         
+          }  
           })
+          console.log(movieVal)
+          $('#movie-name').text("Movie selected:  " + movieVal)
         }))
 
 
+
+//Search bar
 $(document).on('click keypress',function(e) {
   if(e.which == 13) {
     var input = $('.search-bar').val()
@@ -151,6 +158,8 @@ $(document).on('click keypress',function(e) {
         document.querySelector('.screen').style.backgroundColor = 'transparent'
         document.querySelector('.screen').setAttribute('src', results.data[0].images.fixed_width_small.url)
 })
+
+    $('#movie-name').text("Movie selected:  " + input)
   }});
 
 
