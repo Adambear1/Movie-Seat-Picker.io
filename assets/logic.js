@@ -19,10 +19,20 @@ function updateSelectedCount() {
   localStorage.setItem('selectedSeats', JSON.stringify(seatsIndex));
   const selectedSeatsCount = selectedSeats.length;
   count.innerText = selectedSeatsCount;
-  total.innerText = selectedSeatsCount * ticketPrice;
+  tickettotal = selectedSeatsCount * ticketPrice;
+  taxAmt = (tickettotal * .1);
+  total.innerText = tickettotal;
+  totalPrice = tickettotal + taxAmt;
+  $("#tickets").text("🎟️ Tickets: " + selectedSeatsCount);
   if (isNaN(ticketPrice)){
     total.innerText = 0
+    tickettotal = 0
+    taxAmt = 0 
+    totalPrice = 0
   }
+  $("#subtotal").text("Subtotal: $" +tickettotal)
+  $("#taxvalue").text("Tax: $" + taxAmt)
+  $("#totalp").text("Total: $" +totalPrice)
 }
 // Get data from localstorage and populate UI
 function populateUI() {
