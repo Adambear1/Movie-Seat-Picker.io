@@ -37,47 +37,43 @@ function updateSelectedCount() {
 
 minusBtn = '<i class="fas fa-minus"></i>'
 
-var popcornCount = 0
-var popcornCost = 5.50
-var popcorntotal = []
 
-$('#popcorn').on('click', function(){
-  popcornCount ++
-  $('#popcorn').html('🍿 Popcorn:  ' + popcornCount  + '  *  $'  +  popcornCost +'0')
-  $('#taxvalue').html('Tax:  % 6.50')
-  popcorntotal.push(popcornCost)
-})
 
-var sodaCount = 0
-var sodaCost = 3.75
-var sodatotal = []
 
-$('#soda').on('click', function(){
-  sodaCount ++
-  $('#soda').html('🥤 Soda:  ' + sodaCount + '  *  $'  +  sodaCost)
-  $('#taxvalue').html('Tax:  % 6.50')
-  sodatotal.push(sodaCost)
-})
+  let subtotal = []
 
-var hotdogCount = 0
-var hotdogCost = 4.95
-var hotdogtotal = []
+  var popcornCount = 0
+  var popcornCost = 5.50
+  $('#popcorn').on('click', function(){
+    popcornCount ++
+    $('#popcorn').html('🍿 Popcorn:  ' + popcornCount  + '  *  $'  +  popcornCost +'0')
+    $('#taxvalue').html('Tax:  % 6.50')
+    subtotal.push(popcornCost)
+  })
+  
+  
+  var sodaCount = 0
+  var sodaCost = 3.75
 
-$('#hotdog').on('click', function(){
-  hotdogCount ++
-  $('#hotdog').html('🌭 Hotdog:  ' + hotdogCount + '  *  $'  +  hotdogCost)
-  $('#taxvalue').html('Tax:  % 6.50')
-  hotdogtotal.push(hotdogCost)
-})
+  $('#soda').on('click', function(){
+    sodaCount ++
+    $('#soda').html('🥤 Soda:  ' + sodaCount + '  *  $'  +  sodaCost)
+    $('#taxvalue').html('Tax:  % 6.50')
+    subtotal.push(sodaCost)
 
-let subtotal = 0
-subtotal = (popcorntotal.lenth)
+  })
+  
+  var hotdogCount = 0
+  var hotdogCost = 4.95  
+  $('#hotdog').on('click', function(){
+    hotdogCount ++
+    $('#hotdog').html('🌭 Hotdog:  ' + hotdogCount + '  *  $'  +  hotdogCost)
+    $('#taxvalue').html('Tax:  % 6.50')
+    subtotal.push(hotdogCost) 
+    
+    //
 
-$('#paymentCard a').on('click', function(){
-  $("#subtotal").html('Subtotal:   '  + subtotal)
-  console.log(subtotal)
-  console.log('hi')
-})
+  })
 
 
 
@@ -102,7 +98,7 @@ function populateUI() {
 // Movie select event
 movieSelect.addEventListener('mouseover', function(e){
   ticketPrice = e.target.value;
-  console.log(e.target.value)
+  // console.log(e.target.value)
   setMovieData(e.target.selectedIndex, e.target.value);
   updateSelectedCount();
 });
@@ -120,61 +116,67 @@ container.addEventListener('click', e => {
 // Initial count and total set
 updateSelectedCount();
 
+// 
 
-$('li:not(:last-child)').on('click mouseover', (function(e) {
-  e.preventDefault();
-  var $target = $(e.target);
-  var movieVal = $target.attr("id");
-  var queryURL = "https://www.omdbapi.com/?t=" + movieVal + "&apikey=trilogy";
-    // Creating an AJAX call for the specific movie button being clicked
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    }).then(function(response) {
-      var imgURL = response.Poster;
-      var image = $('<img>').attr("src", imgURL)
-      $('.flip-card').removeClass('invisible')
-      image.addClass('close1-front')
-      $('.flip-card-front').html(image);
-      var exit = $('<button onclick="hide()">').text('x');
-      exit.addClass('close1');
-      var rating = response.Rated;
-      $('.flip-card-back').empty()
-      var pOne = $("<p>").text("Rating: " + rating);
-      $('.flip-card-back').append(pOne);
-      var released = response.Released;
-      var pTwo = $("<p>").text("Released: " + released);
-      $('.flip-card-back').append(pTwo);
-      var plot = response.Plot;
-      var pThree = $("<p>").text("Plot: " + plot);
-      $('.flip-card-back').append(pThree);
-      $('.flip-card-back').prepend(exit)
-});
-      fetch("http://api.giphy.com/v1/gifs/search?q=" + movieVal + "&api_key=dc6zaTOxFJmzC&limit=10")
-        .then(res => res.json())
-        .then(data => {
-          let results = data;
-          console.log(results)
-          document.querySelector('.screen').style.backgroundColor = 'transparent'
-              
-          var i = 0;
-          if (i < results.data.length){
-            setInterval(function(){
-              document.querySelector('.screen').setAttribute('src', results.data[i].images.fixed_width_small.url)
-              i++
-            }, 
-              1500)
-          } else {
-            i = 0 
-          }  
-          })
-          console.log(movieVal)
-          $('#movie-name').text("Movie selected:  " + movieVal)
-        }))
+$(document).on('click', (function(e) {
+  $('li:not(:last-child)').on('click', (function(e) {
+    // console.log($(this).siblings().attr('id'))
+    console.log(e.target.id)
+    e.preventDefault();
+    var $target = $(e.target);
+    var movieVal = $target.attr("id");
+    console.log(movieVal)
+    var queryURL = "https://www.omdbapi.com/?t=" + movieVal + "&apikey=trilogy";
+      // Creating an AJAX call for the specific movie button being clicked
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).then(function(response) {
+        var imgURL = response.Poster;
+        var image = $('<img>').attr("src", imgURL)
+        $('.flip-card').removeClass('invisible')
+        image.addClass('close1-front')
+        $('.flip-card-front').html(image);
+        var exit = $('<button onclick="hide()">').text('x');
+        exit.addClass('close1');
+        var rating = response.Rated;
+        $('.flip-card-back').empty()
+        var pOne = $("<p>").text("Rating: " + rating);
+        $('.flip-card-back').append(pOne);
+        var released = response.Released;
+        var pTwo = $("<p>").text("Released: " + released);
+        $('.flip-card-back').append(pTwo);
+        var plot = response.Plot;
+        var pThree = $("<p>").text("Plot: " + plot);
+        $('.flip-card-back').append(pThree);
+        $('.flip-card-back').prepend(exit)
+  });
+        fetch("http://api.giphy.com/v1/gifs/search?q=" + movieVal + "&api_key=dc6zaTOxFJmzC&limit=10")
+          .then(res => res.json())
+          .then(data => {
+            let results = data;
+            console.log(results)
+            document.querySelector('.screen').style.backgroundColor = 'transparent'
+                
+            var i = 0;
+            if (i < results.data.length){
+              setInterval(function(){
+                document.querySelector('.screen').setAttribute('src', results.data[i].images.fixed_width_small.url)
+                i++
+              }, 
+                1500)
+            } else {
+              i = 0 
+            }  
+            })
+            console.log(movieVal)
+            $('#movie-name').text("Movie selected:  " + movieVal)
+          }))
+  
 
+}))
 
-
-//Search bar
+// //Search bar
 $(document).on('click keypress',function(e) {
   if(e.which == 13) {
     var input = $('.search-bar').val()

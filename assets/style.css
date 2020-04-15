@@ -348,3 +348,8 @@ a {
 .card-action a{
   color: #6FEAF6 !important;
 }
+
+#movie {
+  border-width: 5px;
+  border-color: gold;
+}
