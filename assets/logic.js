@@ -66,18 +66,12 @@ $('li:not(:last-child)').on('click', (function(e) {
       method: "GET"
     }).then(function(response) {
       var imgURL = response.Poster;
-<<<<<<< HEAD
-
-
-      $('.flip-card').removeClass('invisible')
-=======
->>>>>>> 396a4f125b7143999af2c5566178efc906903fbe
       var image = $('<img>').attr("src", imgURL)
       $('.flip-card').removeClass('invisible')
-      image.addClass('close-front')
+      image.addClass('close1-front')
       $('.flip-card-front').html(image);
       var exit = $('<button onclick="hide()">').text('x');
-      exit.addClass('close');
+      exit.addClass('close1');
       var rating = response.Rated;
       $('.flip-card-back').empty()
       var pOne = $("<p>").text("Rating: " + rating);
@@ -90,37 +84,6 @@ $('li:not(:last-child)').on('click', (function(e) {
       $('.flip-card-back').append(pThree);
       $('.flip-card-back').prepend(exit)
 });
-<<<<<<< HEAD
-})
-
-function hide(){
-  $('.flip-card').addClass('invisible')
-  // $('.flip-card').addClass('hide')
-}
-
-
-
-$('.dropbtn').on('click', function(){
-  console.log('true')
-  $('#myDropdown').removeClass('invisible')
-})
-
-$('li:not(:last-child)').on('click', function(){
-  console.log('true')
-  $('#myDropdown').addClass('invisible')
-})
-
-
-// $('document:not(.dropdown, .flip-card)').hover(function(){
-
-//   $('.flip-card').addClass('hide')
-
-// }
-// )
-
-
-$(document).on('keypress',function(e) {
-=======
       fetch("http://api.giphy.com/v1/gifs/search?q=" + movieVal + "&api_key=dc6zaTOxFJmzC&limit=10")
         .then(res => res.json())
         .then(data => {
@@ -146,7 +109,6 @@ $(document).on('keypress',function(e) {
 
 
 $(document).on('click keypress',function(e) {
->>>>>>> 396a4f125b7143999af2c5566178efc906903fbe
   if(e.which == 13) {
     var input = $('.search-bar').val()
     var movieVal = input.replace(/\s+/g, '-')
@@ -203,10 +165,10 @@ const $menu = $('#myDropdown')
 $(document).click(e => {
   console.log(e.target)
   if (!$('.dropbtn').is(e.target) && $menu.has(e.target).length === 0 ) {
-    $menu.removeClass('show');
+    $menu.removeClass('show1');
   }
   $('.dropbtn').on('click', () => {
-    $menu.addClass('show')
+    $menu.addClass('show1')
   })
 })
 

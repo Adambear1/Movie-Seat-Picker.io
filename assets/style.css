@@ -1,312 +1,306 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 body {
-    background-color: #242333;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    font-family: ‘Lato’, sans-serif;
-    margin: 0;
-    position: relative;
-    bottom: 100px;
+  background-color: #242333;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: 'Lato', sans-serif;
+  margin: 0;
+  position: relative;
+  bottom: 100px;
+}
+#selectedSeats{
+  position: relative;
+  top: -100px
 }
 .main-div{
-    perspective: 800px;
-    margin-bottom: 30px;
-    position: relative;
-    right: 100px;
-    bottom: 250px;
+  perspective: 800px;
+  margin-bottom: 30px;
+  position: relative;
+  right: 100px;
+  bottom: 100px;
 }
 .movie-contianer{
-    margin: 20px 0;
+  margin: 20px 0;
 }
 .movie-container select{
-    background-color: white;
-    border: 0;
-    border-radius: 5px;
-    font-size: 14px;
-    margin-left: 10px;
-    padding: 5px 15px 5px 15px;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-    appearance: none;
+  background-color: white;
+  border: 0;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-left: 10px;
+  padding: 5px 15px 5px 15px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
 }
 .seat{
-    background-color: #444451;
-    height: 12px;
-    width: 15px;
-    margin: 3px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+  background-color: #444451;
+  height: 12px;
+  width: 15px;
+  margin: 3px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 .seat.selected{
-    background-color: #6FEAF6;
+  background-color: #6FEAF6;
 }
 .seat.occupied{
-    background-color: white;
+  background-color: white;
 }
 .seat:nth-of-type(2) {
-    margin-right: 18px;
+  margin-right: 18px;
 }
 .seat:nth-last-of-type(2) {
-    margin-left: 18px;
+  margin-left: 18px;
 }
 .seat:not(.occupied):hover {
-    cursor: pointer;
-    transform: scale(1.2)
+  cursor: pointer;
+  transform: scale(1.2)
 }
 .showcase .seat:not(.seat.occupied):hover {
-    cursor: default;
-    transform: scale(1)
+  cursor: default;
+  transform: scale(1)
 }
 .showcase {
-    background-color: rgba(0,0,0,0.1);
-    padding: 5px 10px;
-    border-radius: 5px;
-    color: #777;
-    list-style-type: none;
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    right: 100px;
-    bottom: 250px;
-<<<<<<< HEAD
-
-=======
->>>>>>> 396a4f125b7143999af2c5566178efc906903fbe
+  background-color: rgba(0,0,0,0.1);
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: #777;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  right: 100px;
+  bottom: 250px;
 }
 .showcase li {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 10px;
 }
 .showcase li small {
-    margin-left: 2px;
+  margin-left: 2px;
 }
-.row {
-    display: flex;
-}
+/* .row {
+  display: flex;
+} */
 .screen{
-    background-color: white;
-    height: 70px;
-    width: 100%;
-    margin: 15px 0;
-    transform: rotateX(-45deg);
-    box-shadow: 0 3px 10px rgba(255,255,255,0.7);
+  background-color: white;
+  height: 70px;
+  width: 100%;
+  margin: 15px 0;
+  transform: rotateX(-45deg);
+  box-shadow: 0 3px 10px rgba(255,255,255,0.7);
 }
 p.text{
-    margin: 5px 0;
-    position: relative;
-    right: 100px;
-    bottom: 250px;
+  margin: 5px 0;
+  position: relative;
+  right: 100px;
+  bottom: 250px;
 }
 p.text span {
-    color: #6FEAF6;
+  color: #6FEAF6;
 }
-.hide {
-    display: none;
-}
-<<<<<<< HEAD
-
+/* .hide {
+  display: none;
+} */
 .invisible {
-  visibility: hidden;
+visibility: hidden;
 }
-
-=======
-.invisible {
-  visibility: hidden;
-}
->>>>>>> 396a4f125b7143999af2c5566178efc906903fbe
 /*  */
 .flip-card {
-  position: relative;
-  left: 200px;
-  top: 275px;
-  background-color: transparent;
-  height: 275px;
-  width: 175px;
-  font-size: 14px;
-  perspective: 1000px;
+position: relative;
+left: 200px;
+top: 530px;
+background-color: transparent;
+height: 275px;
+width: 175px;
+font-size: 14px;
+perspective: 1000px;
 }
 .flip-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+position: relative;
+width: 100%;
+height: 100%;
+text-align: center;
+transition: transform 0.6s;
+transform-style: preserve-3d;
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 .flip-card:hover .flip-card-inner {
-  transform: rotateY(180deg);
+transform: rotateY(180deg);
 }
 .flip-card-front, .flip-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  border-radius: 10px;
-  /* font-family: ‘FontAwesome’;content: ‘\f00d’; */
+position: absolute;
+width: 100%;
+height: 100%;
+-webkit-backface-visibility: hidden;
+backface-visibility: hidden;
+border-radius: 10px;
+/* font-family: 'FontAwesome';content: '\f00d'; */
 }
 .flip-card-front {
-  background-color: #bbb;
-  color: black;
+background-color: #bbb;
+color: black;
 }
 .flip-card-back {
-  background-color: #2980B9;
-  color: white;
-  transform: rotateY(180deg);
+background-color: #2980B9;
+color: white;
+transform: rotateY(180deg);
 }
 .flip-card-back p {
-  font-size: 14px;
-  text-align: center;
-  padding-top: 3px;
-  padding-bottom: 3px;
-  padding-left: 2px;
-  padding-right: 2px;
+font-size: 14px;
+text-align: center;
+padding-top: 3px;
+padding-bottom: 3px;
+padding-left: 2px;
+padding-right: 2px;
 }
 img {
-  height: 275px;
-  width: 175px;
-  border-radius: 10px;
+height: 275px;
+width: 175px;
+border-radius: 10px;
+/* border-style: none; */
 }
-.close {
-  font-weight: bold;
-  opacity: 100%;
-  float: right;
-  margin-right: 5%;
-  margin-top: 2%;
-  color:white;
+.close1 {
+font-weight: bold;
+opacity: 100%;
+float: right;
+margin-right: 5%;
+margin-top: 2%;
+color:white;
 }
-.close-front {
-  font-weight: bold;
-  opacity: 100%;
-  float: right;
-  color:white;
+.close1-front {
+font-weight: bold;
+opacity: 100%;
+float: right;
+color:white;
 }
-.close:hover {
-  opacity: 90%;
+.close1:hover {
+opacity: 90%;
 }
-  /* */
-  .dropbtn {
-    background-color: #6FEAF6;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    border-radius: 15px;
-    margin-bottom: 25px;
-    opacity: 80%;
-    width: auto;
-    position: relative;
-    left: 245px;
-    top: 300px;
-}
-  .dropbtn:hover, .dropbtn:focus {
-    background-color: #1CECFF;
-    border-radius: 15px;
-  }
-  .dropdown {
-    position: relative;
-    display: inline-block;
-    border-radius: 15px;
-  }
-  .dropdown:hover {
-    position: relative;
-    display: inline-block;
-    border-radius: 15px;
-    display: inline-block
-  }
-  .dropdown-content {
-    visibility: hidden;
-    position: absolute;
-    background-color: #F1F1F1;
-    min-width: 160px;
-    overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  .dropdown-content li {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-  }
-  .dropdown li:hover {
-      background-color: #ddd;
-}
-  .show {
-      visibility: visible;
-      border-radius: 15px;
-}
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> 396a4f125b7143999af2c5566178efc906903fbe
-    ul {
-    padding: 0px;
-    margin: 0px;
-}
-#myDropdown {
-  opacity: 97%;
+/* */
+.dropbtn {
+  background-color: #6FEAF6;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 15px;
+  margin-bottom: 25px;
+  opacity: 80%;
+  width: auto;
   position: relative;
-  left: 215px;
-  top: 300px;
+  left: 245px;
+  top: 550px;
 }
-body {
-  font: 16px Arial;
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #1CECFF;
+  border-radius: 15px;
 }
-.autocomplete {
-  /*the container must be positioned relative:*/
+.dropdown1 {
   position: relative;
   display: inline-block;
+  border-radius: 15px;
+}
+.dropdown1:hover {
+  position: relative;
+  display: inline-block;
+  border-radius: 15px;
+  display: inline-block
+}
+.dropdown1-content {
+  visibility: hidden;
+  position: absolute;
+  background-color: #F1F1F1;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdown1-content li {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.dropdown1 li:hover {
+    background-color: #ddd;
+}
+.show1 {
+    visibility: visible;
+    border-radius: 15px;
+}
+  ul {
+  padding: 0px;
+  margin: 0px;
+}
+#myDropdown {
+opacity: 97%;
+position: relative;
+left: 215px;
+top: 540px;
+}
+body {
+font: 16px Arial;
+}
+.autocomplete {
+/*the container must be positioned relative:*/
+position: relative;
+display: inline-block;
 }
 input {
-  border: 1px solid transparent;
-  background-color: #F1F1F1;
-  padding: 10px;
-  font-size: 16px;
+border: 1px solid transparent;
+background-color: #F1F1F1;
+padding: 10px;
+font-size: 16px;
 }
 input[type=text] {
-  background-color: #F1F1F1;
-  width: 100%;
+background-color: #F1F1F1;
+width: 100%;
 }
 input[type=submit] {
-  background-color: DodgerBlue;
-  color: #fff;
+background-color: DodgerBlue;
+color: #fff;
 }
 .autocomplete-items {
-  position: absolute;
-  border: 1px solid #D4D4D4;
-  border-bottom: none;
-  border-top: none;
-  z-index: 99;
-  /*position the autocomplete items to be the same width as the container:*/
-  top: 100%;
-  left: 0;
-  right: 0;
+position: absolute;
+border: 1px solid #D4D4D4;
+border-bottom: none;
+border-top: none;
+z-index: 99;
+/*position the autocomplete items to be the same width as the container:*/
+top: 100%;
+left: 0;
+right: 0;
 }
 .autocomplete-items div {
-  padding: 10px;
-  cursor: pointer;
-  background-color: #fff;
-  border-bottom: 1px solid #D4D4D4;
+padding: 10px;
+cursor: pointer;
+background-color: #fff;
+border-bottom: 1px solid #D4D4D4;
 }
 .autocomplete-items div:hover {
-  /*when hovering an item:*/
-  background-color: #E9E9E9;
+/*when hovering an item:*/
+background-color: #E9E9E9;
 }
 .autocomplete-active {
-  /*when navigating through the items using the arrow keys:*/
-  background-color: DodgerBlue !important;
-  color: #FFFFFF;
+/*when navigating through the items using the arrow keys:*/
+background-color: DodgerBlue !important;
+color: #FFFFFF;
+}
+
+#paymentCard{
+  position: relative;
+  bottom: 500px;
+  right: 600px;
+  width: 40%;
 }
