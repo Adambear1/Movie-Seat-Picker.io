@@ -353,3 +353,57 @@ a {
   border-width: 5px;
   border-color: gold;
 }
+
+.bg-modal {
+  width: 100%;
+  height: 150%;
+  background-color: rgba(0,0,0,0.7);
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.modal-content {
+  width: 60%;
+  height: 60%;
+  background-color: white;
+  border-radius: 4px;
+  text-align: center; 
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  top: 10px !important;
+}
+
+input {
+  width: 50%;
+  display: inline-block;
+  margin: 0, auto;
+
+}
+
+.close {
+position: absolute;
+top: 0;
+right: 14px;
+font-size: 50px;
+transform: rotate(45deg);
+outline: black;
+cursor: pointer;
+color:darkblue;
+}
+
+.close:hover{
+opacity: 50%;
+}
+
+.modal-name {
+  margin-top: 20px;
+  color:black;
+  font-family: 'Dosis', sans-serif;
+  font-size: 45px;
+}
+

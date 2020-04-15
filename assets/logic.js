@@ -5,12 +5,28 @@ const total = document.getElementById('total');
 const movieSelect = document.querySelector('#movie');
 populateUI();
 let ticketPrice = +movieSelect.value;
-
-
+var taxAmt = 0;
+var tickettotal = 0
+var subtotal = 0;
+var totalPrice = 0;
+var selectedSeats = 0;
+var selectedSeatsCount = 0;
 // Save selected movie index and price
 function setMovieData(movieIndex, moviePrice) {
   localStorage.setItem('selectedMovieIndex', movieIndex);
   localStorage.setItem('selectedMoviePrice', moviePrice);
+}
+function calculateSubtotal (tickettotal){
+  if (isNaN(tickettotal)){
+    tickettotal = 0;
+  }
+  subtotal = (tickettotal + popcorntotal + sodatotal + hotdogtotal);
+  console.log(tickettotal);
+  $("#subtotal").text("Subtotal: $" +subtotal);
+  var taxAmt = (subtotal * .1);
+  $("#taxvalue").text("Tax: $" + taxAmt);
+  var totalPrice = subtotal + taxAmt;
+  $("#totalp").text("Total: $" + totalPrice);
 }
 // Update total and count
 function updateSelectedCount() {
@@ -19,67 +35,53 @@ function updateSelectedCount() {
   localStorage.setItem('selectedSeats', JSON.stringify(seatsIndex));
   const selectedSeatsCount = selectedSeats.length;
   count.innerText = selectedSeatsCount;
-  tickettotal = selectedSeatsCount * ticketPrice;
-  taxAmt = (tickettotal * .1);
+  var tickettotal = selectedSeatsCount * ticketPrice;
   total.innerText = tickettotal;
-  totalPrice = tickettotal + taxAmt;
-  $("#tickets").text("🎟️ Tickets: " + selectedSeatsCount);
+ 
+  if (isNaN(ticketPrice)){
+    $("#tickets").text("🎟️ Tickets: "+ selectedSeatsCount + " x $0");
+  }
+  else {
+  $("#tickets").text("🎟️ Tickets: "+ selectedSeatsCount + " x $" + ticketPrice);     
+}
   if (isNaN(ticketPrice)){
     total.innerText = 0
     tickettotal = 0
     taxAmt = 0 
     totalPrice = 0
   }
-  $("#subtotal").text("Subtotal: $" +tickettotal)
-  $("#taxvalue").text("Tax: $" + taxAmt)
-  $("#totalp").text("Total: $" +totalPrice)
+  console.log(tickettotal);
+calculateSubtotal(tickettotal);
+  
 }
-
 minusBtn = '<i class="fas fa-minus"></i>'
-
-
-
-
-  let subtotal = []
-
-  var popcornCount = 0
-  var popcornCost = 5.50
-  $('#popcorn').on('click', function(){
-    popcornCount ++
-    $('#popcorn').html('🍿 Popcorn:  ' + popcornCount  + '  *  $'  +  popcornCost +'0')
-    $('#taxvalue').html('Tax:  % 6.50')
-    subtotal.push(popcornCost)
-  })
-  
-  
-  var sodaCount = 0
-  var sodaCost = 3.75
-
-  $('#soda').on('click', function(){
-    sodaCount ++
-    $('#soda').html('🥤 Soda:  ' + sodaCount + '  *  $'  +  sodaCost)
-    $('#taxvalue').html('Tax:  % 6.50')
-    subtotal.push(sodaCost)
-
-  })
-  
-  var hotdogCount = 0
-  var hotdogCost = 4.95  
-  $('#hotdog').on('click', function(){
-    hotdogCount ++
-    $('#hotdog').html('🌭 Hotdog:  ' + hotdogCount + '  *  $'  +  hotdogCost)
-    $('#taxvalue').html('Tax:  % 6.50')
-    subtotal.push(hotdogCost) 
-    
-    //
-
-  })
-
-
-
-
-
-
+var popcornCount = 0
+var popcornCost = 5.50
+var popcorntotal = 0
+$('#popcorn').on('click', function(){
+  popcornCount ++
+  $('#popcorn').html('🍿 Popcorn:  ' + popcornCount  + '  *  $'  +  popcornCost +'0')
+  popcorntotal = (popcornCost * popcornCount)
+  calculateSubtotal();
+})
+var sodaCount = 0
+var sodaCost = 3.75
+var sodatotal = 0
+$('#soda').on('click', function(){
+  sodaCount ++
+  $('#soda').html('🥤 Soda:  ' + sodaCount + '  *  $'  +  sodaCost)
+  sodatotal = (sodaCost * sodaCount)
+  calculateSubtotal();
+})
+var hotdogCount = 0
+var hotdogCost = 4.95  
+var hotdogtotal = 0
+$('#hotdog').on('click', function(){
+  hotdogCount ++
+  $('#hotdog').html('🌭 Hotdog:  ' + hotdogCount + '  *  $'  +  hotdogCost)
+  hotdogtotal = (hotdogCost * hotdogCount)
+  calculateSubtotal();
+})
 // Get data from localstorage and populate UI
 function populateUI() {
   const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats'));
@@ -112,12 +114,9 @@ container.addEventListener('click', e => {
     updateSelectedCount();
   }
 });
-
 // Initial count and total set
 updateSelectedCount();
-
 // 
-
 $(document).on('click', (function(e) {
   $('li:not(:last-child)').on('click', (function(e) {
     // console.log($(this).siblings().attr('id'))
@@ -173,9 +172,7 @@ $(document).on('click', (function(e) {
             $('#movie-name').text("Movie selected:  " + movieVal)
           }))
   
-
 }))
-
 // //Search bar
 $(document).on('click keypress',function(e) {
   if(e.which == 13) {
@@ -209,30 +206,18 @@ $(document).on('click keypress',function(e) {
       var pThree = $("<p>").text("Plot: " + plot);
       $('.flip-card-back').append(pThree);
 })
-
     fetch("http://api.giphy.com/v1/gifs/search?q=" + movieVal + "&api_key=dc6zaTOxFJmzC&limit=10")
       .then(res => res.json())
       .then(data => {
       const results = data
         console.log(results)
         console.log(results.data[0].images.fixed_width_small)
-
         document.querySelector('.screen').style.backgroundColor = 'transparent'
         document.querySelector('.screen').setAttribute('src', results.data[0].images.fixed_width_small.url)
 })
-
     $('#movie-name').html("Movie selected:  " + '<p>' + input + '</p>')
   }});
-
-
-
-
-
-
-
-
 const $menu = $('#myDropdown')
-
 $(document).click(e => {
   console.log(e.target)
   if (!$('.dropbtn').is(e.target) && $menu.has(e.target).length === 0 ) {
@@ -242,23 +227,14 @@ $(document).click(e => {
     $menu.addClass('show1')
   })
 })
-
 $('.dropbtn').on('click', function(){
   console.log('true')
   $('#myDropdown').removeClass('invisible')
 })
-
 $('li:not(:last-child)').on('click', function(){
   console.log('true')
   $('#myDropdown').addClass('invisible')
 })
-
 function hide(){
   $('.flip-card').addClass('invisible')
 }
-
-
-
-
-
-
