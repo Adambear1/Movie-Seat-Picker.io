@@ -322,8 +322,27 @@ color: #FFFFFF;
   position: absolute;
 }
 
-#tickets:hover, #popcorn:hover, #soda:hover{
+#hotdog, #popcorn, #soda{
+
+}
+
+a {
+  color: white;
+}
+
+#popcorn:hover, #soda:hover, #hotdog:hover{
   font-size: x-large;
+  cursor: pointer;
+  transform: translateY(0);
+  color: rgba(255, 255, 250, .3)
+}
+
+#popcorn:active, #soda:active, #hotdog:active{
+  background-color: rgba(0,0,0,.1);
+  color: rgba(255,255,200, .9);
+  font-size: x-large;
+  transform: translateX(10);
+  transition: transform 0.3s ease-in-out;
 }
 
 .card-action a{

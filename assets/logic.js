@@ -34,6 +34,56 @@ function updateSelectedCount() {
   $("#taxvalue").text("Tax: $" + taxAmt)
   $("#totalp").text("Total: $" +totalPrice)
 }
+
+minusBtn = '<i class="fas fa-minus"></i>'
+
+var popcornCount = 0
+var popcornCost = 5.50
+var popcorntotal = []
+
+$('#popcorn').on('click', function(){
+  popcornCount ++
+  $('#popcorn').html('🍿 Popcorn:  ' + popcornCount  + '  *  $'  +  popcornCost +'0')
+  $('#taxvalue').html('Tax:  % 6.50')
+  popcorntotal.push(popcornCost)
+})
+
+var sodaCount = 0
+var sodaCost = 3.75
+var sodatotal = []
+
+$('#soda').on('click', function(){
+  sodaCount ++
+  $('#soda').html('🥤 Soda:  ' + sodaCount + '  *  $'  +  sodaCost)
+  $('#taxvalue').html('Tax:  % 6.50')
+  sodatotal.push(sodaCost)
+})
+
+var hotdogCount = 0
+var hotdogCost = 4.95
+var hotdogtotal = []
+
+$('#hotdog').on('click', function(){
+  hotdogCount ++
+  $('#hotdog').html('🌭 Hotdog:  ' + hotdogCount + '  *  $'  +  hotdogCost)
+  $('#taxvalue').html('Tax:  % 6.50')
+  hotdogtotal.push(hotdogCost)
+})
+
+let subtotal = 0
+subtotal = (popcorntotal.lenth)
+
+$('#paymentCard a').on('click', function(){
+  $("#subtotal").html('Subtotal:   '  + subtotal)
+  console.log(subtotal)
+  console.log('hi')
+})
+
+
+
+
+
+
 // Get data from localstorage and populate UI
 function populateUI() {
   const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats'));
