@@ -408,7 +408,7 @@ input {
   margin: 0, auto;
 }
 
-#zip-code, .cc-info{
+#zip-code {
   width: 55%;
   /* display: inline-block; */
   float: inline-start;
@@ -448,7 +448,21 @@ opacity: 50%;
   float: left;
   width: 30%;
   margin-left: 25px;
-  margin-top: 25px;
+  margin-top: 3px;
   margin-bottom: 25px;
 }
 
+.cc-info {
+  /* display: inline-block; */
+  width: 55% !important;
+}
+
+#zip-code {
+  margin-top: 20px;
+}
+
+#confirm {
+  height: 35px;
+  width: 200px;
+  margin-top: 10px;
+}
