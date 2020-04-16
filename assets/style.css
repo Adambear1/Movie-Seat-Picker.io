@@ -98,7 +98,7 @@ body {
 } */
 .screen{
   background-color: white;
-  height: 70px;
+  height: 105px;
   width: 100%;
   margin: 15px 0;
   transform: rotateX(-45deg);
@@ -465,4 +465,37 @@ opacity: 50%;
   height: 35px;
   width: 200px;
   margin-top: 10px;
+}
+
+/* @keyframes example {
+  0%   {background-color:red; left:0px; top:0px;}
+  25%  {background-color:yellow; left:200px; top:0px;}
+  50%  {background-color:blue; left:200px; top:200px;}
+  75%  {background-color:green; left:0px; top:200px;}
+  100% {background-color:red; left:0px; top:0px;}
+}
+
+.confirmation-of-payment {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  background-color: red;
+  animation-name: example;
+  animation-duration: 4s;
+} */
+
+.confirmation-of-payment {
+  height: 250px;
+  position: relative;
+  font-size: 180px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: bolder;
+  text-shadow: 4px 3px yellowgreen;
+  color: greenyellow;
+  z-index: -5;
+  background-color: rgba(211,211,211,.3);
+  border: 1px solid transparent;
+  border-radius: 20px;
+  width: 500px;
 }

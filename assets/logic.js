@@ -20,12 +20,12 @@ function calculateSubtotal (tickettotal){
   if (isNaN(tickettotal)){
     tickettotal = 0;
   }
-  subtotal = (tickettotal + popcorntotal + sodatotal + hotdogtotal);
-  console.log(tickettotal);
+  subtotal = (tickettotal + popcorntotal + sodatotal + hotdogtotal).toFixed(2);
+  // console.log(tickettotal);
   $("#subtotal").text("Subtotal: $" +subtotal);
-  var taxAmt = (subtotal * .1);
+  var taxAmt = (subtotal * .1).toFixed(2);
   $("#taxvalue").text("Tax: $" + taxAmt);
-  var totalPrice = subtotal + taxAmt;
+  var totalPrice = (+subtotal + +taxAmt).toFixed(2);
   $("#totalp").text("Total: $" + totalPrice);
 }
 // Update total and count
@@ -81,6 +81,11 @@ $('#hotdog').on('click', function(){
   $('#hotdog').html('🌭 Hotdog:  ' + hotdogCount + '  *  $'  +  hotdogCost)
   hotdogtotal = (hotdogCost * hotdogCount)
   calculateSubtotal();
+//
+
+
+
+
 })
 // Get data from localstorage and populate UI
 function populateUI() {
@@ -245,3 +250,20 @@ $('.close').on('click', function(){
 $('#submit-payment').on('click', function(){
   $('.bg-modal').removeClass('hide')
 })
+
+
+$('#confirm').on('click', function(){
+  //
+  subtotal = (tickettotal + popcorntotal + sodatotal + hotdogtotal).toFixed(2);
+  var taxAmt = (subtotal * .1).toFixed(2);
+  var totalPrice = (+subtotal + +taxAmt).toFixed(2);
+  //
+
+  $('.confirmation-of-payment').text('$'+ totalPrice)
+
+  $('.confirmation-of-payment').css('z-index', '10')
+  $('.confirmation-of-payment').animate({bottom: '450px'}, 1000)
+
+  setTimeout(function(){location.reload()}, 3000)
+})
+
