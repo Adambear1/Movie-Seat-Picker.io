@@ -160,8 +160,8 @@ $(document).on('click', (function(e) {
             var i = 0;
             if (i < results.data.length){
               setInterval(function(){
-                document.querySelector('.screen').setAttribute('src', results.data[i].images.fixed_width_small.url)
-                i++
+                document.querySelector('.screen').setAttribute('src', results.data[i].images.fixed_width_small.url);
+                i++;
               }, 
                 1500)
             } else {
@@ -238,3 +238,10 @@ $('li:not(:last-child)').on('click', function(){
 function hide(){
   $('.flip-card').addClass('invisible')
 }
+
+$('.close').on('click', function(){
+  $('.bg-modal').addClass('hide')
+})
+$('#submit-payment').on('click', function(){
+  $('.bg-modal').removeClass('hide')
+})

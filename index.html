@@ -5,6 +5,7 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta name="viewport" content="width-device"; width-initial-scale="1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie-edge" />
+    <!-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
     <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/materialize.css" />
@@ -12,10 +13,6 @@
     <title>Movie Seat Booking</title>
   </head>
   <body>
-
-
-
-
 <!--  -->
   <div class="flip-card invisible">
     <div class="flip-card-inner">
@@ -174,11 +171,33 @@
               </ul>
             </div>
             <div class="card-action">
-              <a href="#">Submit Payment</a>
+              <button id="submit-payment">Submit Payment</button>
             </div>
           </div>
         </div>
       </div>
+
+      <div class="bg-modal">
+        <div class="modal-content">
+            <div class="close">+</div>
+            <div class="modal-name">XYZ Theaters</div>
+            <input type="text" id="first-name" placeholder='First Name'>
+            <input type="text" id="last-name" placeholder='Last Name'>
+            <input type="text" id="phone-number" placeholder='Phone Number'>
+            <input type="text" id="city" placeholder='City'>
+            <select type="text" id="state" placeholder='State'>
+              <option value="WA">WA</option>
+              <option value="ID">ID</option>
+              <option value="OR">OR</option>
+              <option value="CA">CA</option>
+            </select>
+            <input type="text" id="zip-code" placeholder="Zip Code">
+            <img id='payment-method' src="https://images-na.ssl-images-amazon.com/images/I/51dplFc7oAL._AC_SX355_.jpg">
+            <input type="text" id="credit-card-type" class='cc-info' placeholder="Credit Card Type">
+            <input type="text" id="credit-card-number" class='cc-info' placeholder="Credit Card Number">
+            <input type="text" id="credit-card-expiration" class='cc-info' placeholder="Credit Card Expiration">
+            <input type="text" id="credit-card-validation" class='cc-info' placeholder="Credit Card Validation">
+
 
             
     <script src="assets/autocomplete.js"></script>

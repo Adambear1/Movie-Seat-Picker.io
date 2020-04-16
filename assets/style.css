@@ -354,6 +354,30 @@ a {
   border-color: gold;
 }
 
+#submit-payment {
+  background-color: rgba(255,255,255, .3);
+  color: #6FEAF6;
+  border: none;
+  padding: 10px;
+  vertical-align: top;
+  box-shadow: 2px 1px 2px gray;
+  margin: 4px 10px 4px 10px;
+}
+
+#submit-payment:hover {
+  color: rgba(111,234,246,.5);
+}
+
+#submit-payment:active {
+  box-shadow: 0 0 0 white;
+  margin: 6px 10px 2px 10px;
+}
+
+
+
+
+
+
 .bg-modal {
   width: 100%;
   height: 150%;
@@ -382,7 +406,21 @@ input {
   width: 50%;
   display: inline-block;
   margin: 0, auto;
+}
 
+#zip-code, .cc-info{
+  width: 55%;
+  /* display: inline-block; */
+  float: inline-start;
+  margin: 0, auto;
+}
+
+
+select {
+  width: 25%;
+  display: inline-block; 
+  margin: 0, auto;
+  margin-right: 70px;
 }
 
 .close {
@@ -405,5 +443,12 @@ opacity: 50%;
   color:black;
   font-family: 'Dosis', sans-serif;
   font-size: 45px;
+}
+#payment-method {
+  float: left;
+  width: 30%;
+  margin-left: 25px;
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
 
