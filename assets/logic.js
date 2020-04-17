@@ -5,13 +5,45 @@ const total = document.getElementById('total');
 const movieSelect = document.querySelector('#movie');
 populateUI();
 let ticketPrice = +movieSelect.value;
-
+var taxAmt = 0;
+var tickettotal = 0
+var subtotal = 0;
+var totalPrice = 0;
+var selectedSeats = 0;
+var selectedSeatsCount = 0;
+var myinterval = setInterval(changeScreen, 1500)
+var i = 0;
 
 // Save selected movie index and price
 function setMovieData(movieIndex, moviePrice) {
   localStorage.setItem('selectedMovieIndex', movieIndex);
   localStorage.setItem('selectedMoviePrice', moviePrice);
 }
+
+
+function changeScreen () {
+  if (i < 10){
+    document.querySelector('.screen').setAttribute('src', results.data[i].images.fixed_width_small.url)
+  }
+  else {
+    i = -1 
+  }  
+  i++;
+}
+
+function calculateSubtotal (tickettotal){
+  if (isNaN(tickettotal)){
+    tickettotal = 0;
+  }
+  subtotal = (tickettotal + popcorntotal + sodatotal + hotdogtotal);
+  console.log(tickettotal);
+  $("#subtotal").text("Subtotal: $" +subtotal);
+  var taxAmt = (subtotal * .1);
+  $("#taxvalue").text("Tax: $" + taxAmt);
+  var totalPrice = subtotal + taxAmt;
+  $("#totalp").text("Total: $" + totalPrice);
+}
+
 // Update total and count
 function updateSelectedCount() {
   const selectedSeats = document.querySelectorAll('.row .seat.selected');
@@ -19,20 +51,24 @@ function updateSelectedCount() {
   localStorage.setItem('selectedSeats', JSON.stringify(seatsIndex));
   const selectedSeatsCount = selectedSeats.length;
   count.innerText = selectedSeatsCount;
-  tickettotal = selectedSeatsCount * ticketPrice;
-  taxAmt = (tickettotal * .1);
+  var tickettotal = selectedSeatsCount * ticketPrice;
   total.innerText = tickettotal;
-  totalPrice = tickettotal + taxAmt;
-  $("#tickets").text("🎟️ Tickets: " + selectedSeatsCount);
+ 
+  if (isNaN(ticketPrice)){
+    $("#tickets").text("🎟️ Tickets: "+ selectedSeatsCount + " x $0");
+  }
+  else {
+  $("#tickets").text("🎟️ Tickets: "+ selectedSeatsCount + " x $" + ticketPrice);     
+}
   if (isNaN(ticketPrice)){
     total.innerText = 0
     tickettotal = 0
     taxAmt = 0 
     totalPrice = 0
   }
-  $("#subtotal").text("Subtotal: $" +tickettotal)
-  $("#taxvalue").text("Tax: $" + taxAmt)
-  $("#totalp").text("Total: $" +totalPrice)
+  console.log(tickettotal);
+calculateSubtotal(tickettotal);
+  
 }
 
 minusBtn = '<i class="fas fa-minus"></i>'
@@ -40,40 +76,36 @@ minusBtn = '<i class="fas fa-minus"></i>'
 
 
 
-  let subtotal = []
+var popcornCount = 0
+var popcornCost = 5.50
+var popcorntotal = 0
+$('#popcorn').on('click', function(){
+  popcornCount ++
+  $('#popcorn').html('🍿 Popcorn:  ' + popcornCount  + '  *  $'  +  popcornCost +'0')
+  popcorntotal = (popcornCost * popcornCount)
+  calculateSubtotal();
+})
 
-  var popcornCount = 0
-  var popcornCost = 5.50
-  $('#popcorn').on('click', function(){
-    popcornCount ++
-    $('#popcorn').html('🍿 Popcorn:  ' + popcornCount  + '  *  $'  +  popcornCost +'0')
-    $('#taxvalue').html('Tax:  % 6.50')
-    subtotal.push(popcornCost)
-  })
-  
-  
-  var sodaCount = 0
-  var sodaCost = 3.75
 
-  $('#soda').on('click', function(){
-    sodaCount ++
-    $('#soda').html('🥤 Soda:  ' + sodaCount + '  *  $'  +  sodaCost)
-    $('#taxvalue').html('Tax:  % 6.50')
-    subtotal.push(sodaCost)
+var sodaCount = 0
+var sodaCost = 3.75
+var sodatotal = 0
+$('#soda').on('click', function(){
+  sodaCount ++
+  $('#soda').html('🥤 Soda:  ' + sodaCount + '  *  $'  +  sodaCost)
+  sodatotal = (sodaCost * sodaCount)
+  calculateSubtotal();
+})
 
-  })
-  
-  var hotdogCount = 0
-  var hotdogCost = 4.95  
-  $('#hotdog').on('click', function(){
-    hotdogCount ++
-    $('#hotdog').html('🌭 Hotdog:  ' + hotdogCount + '  *  $'  +  hotdogCost)
-    $('#taxvalue').html('Tax:  % 6.50')
-    subtotal.push(hotdogCost) 
-    
-    //
-
-  })
+var hotdogCount = 0
+var hotdogCost = 4.95  
+var hotdogtotal = 0
+$('#hotdog').on('click', function(){
+  hotdogCount ++
+  $('#hotdog').html('🌭 Hotdog:  ' + hotdogCount + '  *  $'  +  hotdogCost)
+  hotdogtotal = (hotdogCost * hotdogCount)
+  calculateSubtotal();
+})
 
 
 
@@ -150,6 +182,7 @@ $(document).on('click', (function(e) {
         var pThree = $("<p>").text("Plot: " + plot);
         $('.flip-card-back').append(pThree);
         $('.flip-card-back').prepend(exit)
+        clearInterval(myinterval);
   });
         fetch("http://api.giphy.com/v1/gifs/search?q=" + movieVal + "&api_key=dc6zaTOxFJmzC&limit=10")
           .then(res => res.json())
@@ -159,16 +192,9 @@ $(document).on('click', (function(e) {
             document.querySelector('.screen').style.backgroundColor = 'transparent'
                 
             var i = 0;
-            if (i < results.data.length){
-              setInterval(function(){
-                document.querySelector('.screen').setAttribute('src', results.data[i].images.fixed_width_small.url)
-                i++
-              }, 
-                1500)
-            } else {
-              i = 0 
-            }  
-            })
+            var myinterval = setInterval(changeScreen, 1500)
+                console.log(myinterval)
+            }) 
             console.log(movieVal)
             $('#movie-name').text("Movie selected:  " + movieVal)
           }))
@@ -208,6 +234,7 @@ $(document).on('click keypress',function(e) {
       var plot = response.Plot;
       var pThree = $("<p>").text("Plot: " + plot);
       $('.flip-card-back').append(pThree);
+      clearInterval(myinterval);
 })
 
     fetch("http://api.giphy.com/v1/gifs/search?q=" + movieVal + "&api_key=dc6zaTOxFJmzC&limit=10")
@@ -219,7 +246,20 @@ $(document).on('click keypress',function(e) {
 
         document.querySelector('.screen').style.backgroundColor = 'transparent'
         document.querySelector('.screen').setAttribute('src', results.data[0].images.fixed_width_small.url)
-})
+
+        var i = 0;
+        var myinterval = setInterval(function(){
+              if (i < results.data.length){
+                document.querySelector('.screen').setAttribute('src', results.data[i].images.fixed_width_small.url)
+              }
+              else {
+                i = -1 
+              }  
+              i++;
+            
+          }, 
+            1500)
+      })
 
     $('#movie-name').html("Movie selected:  " + '<p>' + input + '</p>')
   }});
