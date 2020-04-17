@@ -173,10 +173,17 @@ $(document).on('click', (function(e) {
               i = 0 
             }  
             })
+
+
+
+
+
+
+
+            //     
             console.log(movieVal)
             $('#movie-name').text("Movie selected:  " + movieVal)
-          }))
-  
+  }))
 }))
 // //Search bar
 $(document).on('click keypress',function(e) {
