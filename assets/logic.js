@@ -124,6 +124,7 @@ updateSelectedCount();
 // 
 $(document).on('click', (function(e) {
   $('li:not(:last-child)').on('click', (function(e) {
+    document.querySelector('.screen').setAttribute('src', '#')
     // console.log($(this).siblings().attr('id'))
     console.log(e.target.id)
     e.preventDefault();
@@ -159,27 +160,23 @@ $(document).on('click', (function(e) {
           .then(res => res.json())
           .then(data => {
             let results = data;
-            console.log(results)
             document.querySelector('.screen').style.backgroundColor = 'transparent'
                 
-            var i = 0;
-            if (i < results.data.length){
+            var z = 0;
+
+            while (z > results.data.length) {
               setInterval(function(){
-                document.querySelector('.screen').setAttribute('src', results.data[i].images.fixed_width_small.url);
-                i++;
-              }, 
-                1500)
-            } else {
-              i = 0 
-            }  
+                document.querySelector('.screen').setAttribute('src', results.data[z].images.fixed_width_small.url);
+                z++;
+              },1500)
+              if (z > results.data.length){
+                z = 0 
+                return setInterval(function(){
+                  document.querySelector('.screen').setAttribute('src', results.data[z].images.fixed_width_small.url);
+                  z++;
+                },1500)
+              }}
             })
-
-
-
-
-
-
-
             //     
             console.log(movieVal)
             $('#movie-name').text("Movie selected:  " + movieVal)
@@ -188,6 +185,7 @@ $(document).on('click', (function(e) {
 // //Search bar
 $(document).on('click keypress',function(e) {
   if(e.which == 13) {
+    document.querySelector('.screen').setAttribute('src', "#")
     var input = $('.search-bar').val()
     var movieVal = input.replace(/\s+/g, '-')
     var random = Math.floor(Math.random() * 7) + 8
@@ -218,17 +216,30 @@ $(document).on('click keypress',function(e) {
       var pThree = $("<p>").text("Plot: " + plot);
       $('.flip-card-back').append(pThree);
 })
-    fetch("http://api.giphy.com/v1/gifs/search?q=" + movieVal + "&api_key=dc6zaTOxFJmzC&limit=10")
+    fetch("http://api.giphy.com/v1/gifs/search?q=" + movieVal + "&api_key=dc6zaTOxFJmzC&limit=50")
       .then(res => res.json())
       .then(data => {
       const results = data
         console.log(results)
         console.log(results.data[0].images.fixed_width_small)
         document.querySelector('.screen').style.backgroundColor = 'transparent'
-        document.querySelector('.screen').setAttribute('src', results.data[0].images.fixed_width_small.url)
-})
+        var z = 0;
+        if (z > results.data.length){
+            z = 0 
+        } else { 
+          setInterval(function(){
+            document.querySelector('.screen').setAttribute('src', results.data[z].images.fixed_width_small.url);
+            z++;
+          }, 
+            1500)
+}})
+
     $('#movie-name').html("Movie selected:  " + '<p>' + input + '</p>')
   }});
+
+
+
+
 const $menu = $('#myDropdown')
 $(document).click(e => {
   console.log(e.target)
@@ -273,4 +284,24 @@ $('#confirm').on('click', function(){
 
   setTimeout(function(){location.reload()}, 3000)
 })
+
+
+
+
+
+
+
+fetch("https://voicerss-text-to-speech.p.rapidapi.com/?r=0&c=mp3&f=8khz_8bit_mono&src=Hello%252C%20world!&hl=en-us", {
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "voicerss-text-to-speech.p.rapidapi.com",
+		"x-rapidapi-key": "253db91dbd2d47d391b9dac414107c69"
+	}
+})
+.then(response => {
+	console.log(response);
+})
+.catch(err => {
+	console.log(err);
+});
 
