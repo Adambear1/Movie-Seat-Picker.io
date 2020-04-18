@@ -156,7 +156,8 @@ $(document).on('click', (function(e) {
         $('.flip-card-back').append(pThree);
         $('.flip-card-back').prepend(exit)
   });
-        fetch("http://api.giphy.com/v1/gifs/search?q=" + movieVal + "&api_key=dc6zaTOxFJmzC&limit=10")
+        fetch("http://api.giphy.com/v1/gifs/search?q=" + movieVal + "&api_key=dc6zaTOxFJmzC&limit=50")
+        // 6YKPcBDvL35vQ4dlZAH412e7gesXwYxh
           .then(res => res.json())
           .then(data => {
             let results = data;
@@ -243,6 +244,8 @@ $(document).on('click keypress',function(e) {
       $('.flip-card-back').append(pThree);
 })
     fetch("http://api.giphy.com/v1/gifs/search?q=" + movieVal + "&api_key=dc6zaTOxFJmzC&limit=50")
+    // 6YKPcBDvL35vQ4dlZAH412e7gesXwYxh
+    
       .then(res => res.json())
       .then(data => {
       const results = data
