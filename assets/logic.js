@@ -124,7 +124,6 @@ updateSelectedCount();
 // 
 $(document).on('click', (function(e) {
   $('li:not(:last-child)').on('click', (function(e) {
-    document.querySelector('.screen').setAttribute('src', '#')
     // console.log($(this).siblings().attr('id'))
     console.log(e.target.id)
     e.preventDefault();
@@ -162,22 +161,18 @@ $(document).on('click', (function(e) {
           .then(data => {
             let results = data;
             document.querySelector('.screen').style.backgroundColor = 'transparent'
-                
-            var z = 0;
 
-            while (z > results.data.length) {
+            var z = 0;
+            if (z > results.data.length){
+                z = 0 
+            } else { 
               setInterval(function(){
                 document.querySelector('.screen').setAttribute('src', results.data[z].images.fixed_width_small.url);
                 z++;
-              },1500)
-              if (z > results.data.length){
-                z = 0 
-                return setInterval(function(){
-                  document.querySelector('.screen').setAttribute('src', results.data[z].images.fixed_width_small.url);
-                  z++;
-                },1500)
-              }}
-            })
+              }, 
+                1500)
+            }
+
             //     
             var settings = {
               "async": true,
@@ -201,14 +196,9 @@ $(document).on('click', (function(e) {
               $('#movie-name').text("Movie selected:  " + movieVal)
               $('#translate-name').text("En Espanol:  " + translateTitle)
             });
-
-
-
-
-            
-
-  }))
-}))
+    })
+}))}
+))
 // //Search bar
 $(document).on('click keypress',function(e) {
   if(e.which == 13) {
