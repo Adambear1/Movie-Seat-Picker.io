@@ -16,14 +16,14 @@ body {
 }
 #selectedSeats{
   position: relative;
-  top: -100px
+  top: -180px
 }
 .main-div{
   perspective: 800px;
   margin-bottom: 30px;
   position: relative;
   right: 100px;
-  bottom: 100px;
+  bottom: 250px;
 }
 .movie-contianer, .flip-card{
   margin-top: 50px;
@@ -82,7 +82,7 @@ body {
   justify-content: space-between;
   position: relative;
   right: 100px;
-  bottom: 250px;
+  bottom: 300px;
 }
 .showcase li {
   display: flex;
@@ -123,7 +123,7 @@ visibility: hidden;
 .flip-card {
 position: relative;
 left: 200px;
-top: 530px;
+top: 320px;
 background-color: transparent;
 height: 275px;
 width: 175px;
@@ -205,7 +205,7 @@ opacity: 90%;
   width: auto;
   position: relative;
   left: 245px;
-  top: 550px;
+  top: 350px;
 }
 .dropbtn:hover, .dropbtn:focus {
   background-color: #1CECFF;
@@ -252,7 +252,7 @@ opacity: 90%;
 opacity: 97%;
 position: relative;
 left: 215px;
-top: 540px;
+top: 340px;
 }
 body {
 font: 16px Arial;
@@ -305,7 +305,7 @@ color: #FFFFFF;
 
 #paymentCard{
   position: relative;
-  bottom: 500px;
+  bottom: 700px;
   right: 270px;
   width: 45%;
 }
