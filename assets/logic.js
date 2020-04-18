@@ -178,8 +178,34 @@ $(document).on('click', (function(e) {
               }}
             })
             //     
-            console.log(movieVal)
-            $('#movie-name').text("Movie selected:  " + movieVal)
+            var settings = {
+              "async": true,
+              "crossDomain": true,
+              "url": "https://google-translate1.p.rapidapi.com/language/translate/v2",
+              "method": "POST",
+              "headers": {
+                "x-rapidapi-host": "google-translate1.p.rapidapi.com",
+                "x-rapidapi-key": "9d23a098c0mshffb86547dfcfa5ap17bf84jsn411163bf9f70",
+                "content-type": "application/x-www-form-urlencoded"
+              },
+              "data": {
+                "source": "en",
+                "q": movieVal,
+                "target": "es"
+              }
+            }
+            $.ajax(settings).done(function (response) {
+              console.log(response);
+              var translateTitle = response.data.translations[0].translatedText
+              $('#movie-name').text("Movie selected:  " + movieVal)
+              $('#translate-name').text("En Espanol:  " + translateTitle)
+            });
+
+
+
+
+            
+
   }))
 }))
 // //Search bar
@@ -233,6 +259,29 @@ $(document).on('click keypress',function(e) {
           }, 
             1500)
 }})
+
+        var settings = {
+          "async": true,
+          "crossDomain": true,
+          "url": "https://google-translate1.p.rapidapi.com/language/translate/v2",
+          "method": "POST",
+          "headers": {
+            "x-rapidapi-host": "google-translate1.p.rapidapi.com",
+            "x-rapidapi-key": "9d23a098c0mshffb86547dfcfa5ap17bf84jsn411163bf9f70",
+            "content-type": "application/x-www-form-urlencoded"
+          },
+          "data": {
+            "source": "en",
+            "q": input,
+            "target": "es"
+          }
+        }
+        $.ajax(settings).done(function (response) {
+          console.log(response);
+          var translateTitle = response.data.translations[0].translatedText
+          $('#movie-name').text("Movie selected:  " + input)
+          $('#translate-name').text("En Espanol:  " + translateTitle)
+        });
 
     $('#movie-name').html("Movie selected:  " + '<p>' + input + '</p>')
   }});
